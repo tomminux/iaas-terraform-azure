@@ -1,0 +1,32 @@
+terraform {
+  required_version = ">= 0.12"
+}
+
+module "servers" {
+
+  source               = "./modules/__MODULE_NAME__"
+
+  prefix_name          = var.prefix
+  rg_name              = "${var.prefix}-rg"
+  location_name        = var.location_name
+  owner_name           = var.owner_name
+
+  how_many_servers     = var.how_many_servers
+
+  ssh_key              = var.ssh_public_key_file
+  ssh_public_key_path  = var.ssh_public_key_path
+  linuxvm_admin_username = var.server_admin_username
+  linuxvm_script_names = var.server_script_names
+  linuxvm_hostname     = var.server_hostname
+  vnet_name            = var.server_vnet_name
+  subnet_name          = var.server_subnet_name
+  linuxvm_subnet_ip    = var.server_ip
+  nsg_name             = var.server_nsg_name
+
+  linuxvm_size         = var.server_linuxvm_size
+  publisher            = var.server_publisher
+  offer                = var.server_offer
+  sku                  = var.server_sku
+  disti_version        = var.server_version
+
+}
