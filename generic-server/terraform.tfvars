@@ -3,11 +3,13 @@
 
 ## ..:: Common ::..
 ssh_public_key_file     = "/home/ubuntu/.ssh/azure.pub"
+#ssh_public_key_path     = ["/home/ubuntu/.ssh/authorized_keys"]
 ssh_public_key_path     = ["/home/debian/.ssh/authorized_keys"]
 
 ## ..:: Servers Variables ::..
 how_many_servers = 1
-server_script_names   = ["generic-server"]
+server_script_names   = ["generic-server-debian"]
+#server_script_names   = ["generic-server-ubuntu"]
 server_hostname       = ["docker-server"]
 server_admin_username = ["debian"]
 server_vnet_name      = "legacy"
