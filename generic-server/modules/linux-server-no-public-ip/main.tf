@@ -69,7 +69,7 @@ resource "azurerm_virtual_machine" "linuxvm_vm" {
   resource_group_name          = var.rg_name
   primary_network_interface_id = azurerm_network_interface.linuxvm_subnet_vnic[count.index].id
   network_interface_ids        = [azurerm_network_interface.linuxvm_subnet_vnic[count.index].id]
-  vm_size                      = var.linuxvm_size
+  vm_size                      = var.linuxvm_size[count.index]
 
   storage_os_disk {
     name              = "${var.prefix_name}-${var.vnet_name}-${var.linuxvm_hostname[count.index]}-osdisk"
