@@ -1,4 +1,4 @@
-## ..:: Loading files ::..
+## ..:: Loading files ::..
 ## ----------------------------------------------------------------------------
 data "local_file" "ssh_key" {
   filename = var.ssh_key
@@ -12,7 +12,7 @@ data "template_file" "init_file" {
 
 }
 
-## ..:: Loading Network and Subnets ::..
+## ..:: Loading Network and Subnets ::..
 ## ============================================================================
 data "azurerm_subnet" "vnet_subnet" {
 
@@ -22,7 +22,7 @@ data "azurerm_subnet" "vnet_subnet" {
 
 }
 
-## ..:: Loading Network Security Group ::..
+## ..:: Loading Network Security Group ::..
 ## ============================================================================
 data "azurerm_network_security_group" "nsg" {
 
@@ -79,22 +79,22 @@ resource "azurerm_virtual_machine" "linuxvm_vm" {
   }
 
   storage_image_reference {
-    publisher = "debian"
-    offer     = "debian-10"
-    sku       = "10-gen2"
-    version   = "latest"
+    publisher = var.publisher[count.index]
+    offer     = var.offer[count.index]
+    sku       = var.sku[count.index]
+    version   = var.disti_version[count.index]
   }
 
   os_profile {
     computer_name  = var.linuxvm_hostname[count.index]
-    admin_username = "debian"
+    admin_username = var.linuxvm_admin_username[count.index]
   }
 
   os_profile_linux_config {
     disable_password_authentication = true
 
     ssh_keys {
-      path     = "/home/debian/.ssh/authorized_keys"
+      path     = var.ssh_public_key_path[count.index]
       key_data = data.local_file.ssh_key.content
     }
   }
