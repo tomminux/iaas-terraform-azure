@@ -21,3 +21,12 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bi
 apt update
 DEBIAN_FRONTEND=noninteractive apt install docker-ce kubectl -y
 usermod -aG docker ubuntu
+
+### ..:: Install Docker ::..
+### ---------------------------------------------------------------------------
+echo "--> Installing Ansible"
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+apt-add-repository "deb http://ppa.launchpad.net/ansible/ansible/ubuntu bionic main"
+DEBIAN_FRONTEND=noninteractive apt update
+DEBIAN_FRONTEND=noninteractive apt install ansible -y
+sed -i 's/#host_key_checking = False/host_key_checking = False/g' /etc/ansible/ansible.cfg
