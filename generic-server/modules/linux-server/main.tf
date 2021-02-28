@@ -8,7 +8,7 @@ data "template_file" "init_file" {
 
   count = var.how_many_servers
 
-  template = "${file("${path.module}/scripts/${var.linuxvm_script_names[count.index]}.tpl")}"
+  template = file("${path.module}/scripts/${var.linuxvm_script_names[count.index]}.tpl")
 
 }
 
