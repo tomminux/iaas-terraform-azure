@@ -11,6 +11,7 @@ variable "vnet_configurations" {
   type = list(object({
     vnet_name        = string
     address_space    = list(string)
+    dns_servers      = list(string)
   }))
 } 
 
